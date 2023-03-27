@@ -4,11 +4,9 @@ import { render, screen } from './utils/test-utils/test-utils.jsx';
 import App from 'src/App.jsx';
 
 describe('App', async () => {
-
 	it('should render while authenticating', () => {
 		render(<App />);
 
-        expect(screen.getByText('Vite + React')).toBeInTheDocument()
+		expect(screen.getByText('Vite + React')).toBeInTheDocument();
 	});
-	
 });
