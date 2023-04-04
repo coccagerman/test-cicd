@@ -7,6 +7,7 @@ describe('App', async () => {
 	it('should render while authenticating', () => {
 		render(<App />);
 
+
 		expect(screen.getByText('Vite + React')).toBeInTheDocument();
 	});
 });
