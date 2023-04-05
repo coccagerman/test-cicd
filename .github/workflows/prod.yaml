@@ -24,15 +24,8 @@ jobs:
     - name: Build the project
       run: yarn build
 
-    # - name: Deploy to Netlify
-    #   uses: nwtgck/actions-netlify@v2.0.0
-
-    #   env:
-    #     NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-    #     NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-    #     build-dir: './dist'
-    #   with:
-    #     args: deploy --prod --message "Deployed from GitHub Actions"
+    - name: Run tests
+      run: yarn test
 
     - name: Netlify Deploy
       uses: jsmrcaga/action-netlify-deploy@v2.0.0
