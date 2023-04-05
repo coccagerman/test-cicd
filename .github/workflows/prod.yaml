@@ -1,35 +1,34 @@
-name: "ci-cd pipeline"
+name: Deploy to Netlify
 
-on: 
+on:
   push:
     branches:
-    - main
+      - main
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
+
     - name: Use Node.js 16.x
       uses: actions/setup-node@v2
       with:
-        node-version: 16.x
-        cache: 'yarn'
-        cache-dependency-path: yarn.lock
-    - name: Install dependencies
-      run: yarn install 
-    # // - name: Run tests
-    # // - run: yarn test
-    - name: Build file
-      run: yarn run build
-      
+        node-version: '16.x'
 
-    # // deploy the application to netlify
-    - name: Deploy production to Netlify
-      uses: South-Paw/action-netlify-deploy@v1.2.0
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        netlify-auth-token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-        netlify-site-id: ${{ secrets.NETLIFY_SITE_ID }}
+    - name: Install dependencies
+      run: yarn install --frozen-lockfile
+
+    - name: Build the project
+      run: yarn build
+
+    - name: Deploy to Netlify
+      uses: netlify/actions/cli@v1
+      env:
+        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         build-dir: './dist'
-        comment-on-commit: true
+      with:
+        args: deploy --prod --message "Deployed from GitHub Actions"
