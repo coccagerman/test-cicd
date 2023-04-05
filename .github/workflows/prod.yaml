@@ -19,7 +19,7 @@ jobs:
         node-version: '16.x'
 
     - name: Install dependencies
-      run: yarn install --frozen-lockfile
+      run: yarn install
 
     - name: Build the project
       run: yarn build
@@ -44,6 +44,6 @@ jobs:
         # Directory where built files are stored
         build_directory: './dist'
         # Command to install dependencies
-        install_command: yarn install --frozen-lockfile
+        install_command: yarn install
         # Command to build static website
         build_command: yarn build   
