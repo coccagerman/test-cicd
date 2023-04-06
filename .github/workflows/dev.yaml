@@ -1,9 +1,9 @@
-name: Production deploy
+name: Development deploy
 
 on:
   push:
     branches:
-      - main
+      - dev
 
 jobs:
   build-and-deploy:
@@ -20,6 +20,9 @@ jobs:
 
     - name: Install dependencies
       run: yarn install
+
+    - name: Build the project
+      run: yarn build
 
     - name: Run tests
       run: yarn test
