@@ -32,8 +32,8 @@ jobs:
         NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
       run: |
-          echo "Secret key: $MY_SECRET_KEY"
-          echo "Public key: $MY_PUBLIC_KEY"
+          echo "NETLIFY_AUTH_TOKEN: $NETLIFY_AUTH_TOKEN"
+          echo "NETLIFY_SITE_ID: $NETLIFY_SITE_ID"
 
     - name: Netlify Deploy
       uses: jsmrcaga/action-netlify-deploy@v2.0.0
