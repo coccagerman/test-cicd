@@ -24,10 +24,10 @@ jobs:
     - name: Run tests
       run: yarn test
 
+    - name: Build project
+      run: yarn build
+
     - name: Netlify Deploy
-      env:
-        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
       uses: jsmrcaga/action-netlify-deploy@v2.0.0
       with:
         # Auth token to use with netlify
